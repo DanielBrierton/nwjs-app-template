@@ -1,7 +1,7 @@
 # nwjs-app-template
 A simple template I use to start building an [NW.js](http://nwjs.io/) application.
 
-It uses [Gulp](http://gulpjs.com/) for the build, [Bower](http://bower.io/) for front-end dependencies, and [Require.js](http://requirejs.org/) for AMD loading and optimization.
+It uses [Gulp](http://gulpjs.com/) for the build, [Bower](http://bower.io/) for front-end dependencies, [Require.js](http://requirejs.org/) for AMD loading and [lamda](https://github.com/PepsRyuu/lamda) for AMD optimization.
 
 ## Planned Features
 * Unit and integration testing
