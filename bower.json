@@ -1,0 +1,26 @@
+{
+  "name": "m3uOrganiser",
+  "version": "0.1.0",
+  "authors": [
+    "Daniel Brierton <daniel@brierton.me>"
+  ],
+  "description": "An application for organising music into folders and .m3u files.",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "m3u",
+    "music"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.18"
+  }
+}

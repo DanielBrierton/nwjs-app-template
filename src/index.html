@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello World!</title>
+        <script src="bower_components/requirejs/require.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            requirejs.config({
+                baseUrl: './js'
+            });
+            requirejs([
+                'Application'
+            ], function (Application) {
+                try {
+                    var application = new Application({
+                        container: document.getElementById('app')
+                    });
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <div id="app">
+        </div>
+    </body>
+</html>
