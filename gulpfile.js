@@ -1,3 +1,5 @@
+var NWAPP_STAGE = "./nwapp/";
+
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var NwBuilder = require('node-webkit-builder');
@@ -5,33 +7,33 @@ var bower = require('bower');
 var requirejsOptimize = require('gulp-requirejs-optimize');
 
 gulp.task('copyindexhtml', function () {
-    gulp.src('src/index.html')
-        .pipe(gulp.dest('nwapp/'));
+    return gulp.src('./src/index.html')
+        .pipe(gulp.dest(NWAPP_STAGE));
 });
 
 gulp.task('copypackagejson', function () {
-    gulp.src('./package.json')
-        .pipe(gulp.dest('nwapp/'));
+    return gulp.src('./package.json')
+        .pipe(gulp.dest(NWAPP_STAGE));
 });
 
 gulp.task('installbowerdeps', function (done) {
     bower.commands.install([], {save: true}, {})
-        .on('end', function(installed){
+        .on('end', function (installed) {
             done();
         });
 });
 
 gulp.task('copybowerdeps', ['installbowerdeps'], function () {
-    gulp.src('./src/bower_components/**')
-        .pipe(gulp.dest('nwapp/bower_components/'));
+    return gulp.src('./src/bower_components/**')
+        .pipe(gulp.dest(NWAPP_STAGE + 'bower_components/'));
 });
 
 gulp.task('optimize', function () {
-    return gulp.src('src/js/Application.js')
+    return gulp.src('./src/js/Application.js')
         .pipe(requirejsOptimize({
             name: 'Application'
         }))
-        .pipe(gulp.dest('nwapp/js/'));
+        .pipe(gulp.dest(NWAPP_STAGE + 'js/'));
 });
 
 gulp.task('build', ['copyindexhtml', 'copypackagejson', 'copybowerdeps', 'optimize']);
@@ -39,7 +41,7 @@ gulp.task('build', ['copyindexhtml', 'copypackagejson', 'copybowerdeps', 'optimi
 gulp.task('nw', ['build'], function () {
     var nw = new NwBuilder({
         version: '0.12.2',
-        files: './nwapp/**',
+        files: NWAPP_STAGE + '**',
         platforms: ['win32', 'win64']
     });
 
