@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var NwBuilder = require('node-webkit-builder');
 var bower = require('bower');
-var requirejsOptimize = require('gulp-requirejs-optimize');
+var lamdaOptimizer = require('lamda-optimizer');
 
 gulp.task('copyindexhtml', function () {
     return gulp.src('./src/index.html')
@@ -28,15 +28,19 @@ gulp.task('copybowerdeps', ['installbowerdeps'], function () {
         .pipe(gulp.dest(NWAPP_STAGE + 'bower_components/'));
 });
 
-gulp.task('optimize', function () {
-    return gulp.src('./src/js/Application.js')
-        .pipe(requirejsOptimize({
-            name: 'Application'
-        }))
-        .pipe(gulp.dest(NWAPP_STAGE + 'js/'));
+gulp.task('lamda-optimize', function (done) {
+    lamdaOptimizer({
+        minify: true,
+        modules: [{
+            name: 'Application',
+            location: 'src/js/Application'
+        }]
+    }, NWAPP_STAGE + 'js/', function () {
+        done();
+    });
 });
 
-gulp.task('build', ['copyindexhtml', 'copypackagejson', 'copybowerdeps', 'optimize']);
+gulp.task('build', ['copyindexhtml', 'copypackagejson', 'copybowerdeps', 'lamda-optimize']);
 
 gulp.task('nw', ['build'], function () {
     var nw = new NwBuilder({

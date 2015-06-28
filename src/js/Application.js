@@ -1,5 +1,5 @@
 define(function () {
-    var fs = nodeRequire('fs');
+    var fs = require('fs');
 
     var Application = function (options) {
         var fileContents = fs.readFileSync('index.html').toString().replace(/\</g, '&lt;').replace(/\>/g, '&gt;');
