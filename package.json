@@ -1,5 +1,5 @@
 {
-  "name": "nwjs_app_template",
+  "name": "nwjs-app-template",
   "version": "0.1.0",
   "description": "An gulp-based application template for building NW.js apps.",
   "main": "index.html",
