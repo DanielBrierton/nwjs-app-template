@@ -26,7 +26,7 @@ gulp.task('copybowerdeps', ['installbowerdeps'], function () {
         .pipe(gulp.dest('nwapp/bower_components/'));
 });
 
-gulp.task('optimise', function () {
+gulp.task('optimize', function () {
     return gulp.src('src/js/Application.js')
         .pipe(requirejsOptimize({
             name: 'Application'
@@ -34,7 +34,7 @@ gulp.task('optimise', function () {
         .pipe(gulp.dest('nwapp/js/'));
 });
 
-gulp.task('build', ['copyindexhtml', 'copypackagejson', 'copybowerdeps', 'optimise']);
+gulp.task('build', ['copyindexhtml', 'copypackagejson', 'copybowerdeps', 'optimize']);
 
 gulp.task('nw', ['build'], function () {
     var nw = new NwBuilder({
